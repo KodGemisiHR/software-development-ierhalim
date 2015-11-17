@@ -17,6 +17,9 @@
 
 package com.kodgemisi.web.sample.model;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
@@ -25,6 +28,10 @@ public class Item extends AbstractBaseModel {
 
     private String name;
     private String description;
+
+    @NotEmpty
+    @Column(unique = true)
+    private String stockNumber;
 
     @ManyToOne
     private User owner;
@@ -36,6 +43,20 @@ public class Item extends AbstractBaseModel {
         this.name = name;
         this.description = description;
     }
+
+    public Item(String name,String description,String stockNumber){
+        this(name,description);
+        this.stockNumber = stockNumber;
+    }
+
+    public String getStockNumber() {
+        return stockNumber;
+    }
+
+    public void setStockNumber(String stockNumber) {
+        this.stockNumber = stockNumber;
+    }
+
 
     public String getName() {
         return name;

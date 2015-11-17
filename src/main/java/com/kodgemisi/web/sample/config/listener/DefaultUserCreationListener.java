@@ -49,9 +49,9 @@ public class DefaultUserCreationListener implements ApplicationListener {
                 return;
             }
 
-            Item item1 = new Item("Test 1", "lorem ipsum");
-            Item item2 = new Item("Test 2", "lorem ipsum");
-            Item item3 = new Item("Test 3", "lorem ipsum");
+            Item item1 = new Item("Test 1", "lorem ipsum","0001");
+            Item item2 = new Item("Test 2", "lorem ipsum","0002");
+            Item item3 = new Item("Test 3", "lorem ipsum","0003");
 
 
             User defaultUser = new User();
