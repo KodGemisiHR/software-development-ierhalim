@@ -2,6 +2,7 @@ package com.kodgemisi.web.sample.controller;
 
 import com.kodgemisi.web.sample.model.User;
 import com.kodgemisi.web.sample.service.UserService;
+import org.hibernate.mapping.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,9 +25,7 @@ public class UserController {
 
     @RequestMapping("/withItems")
     public String listWithItems(Model model) {
-
         model.addAttribute("users", this.userService.getAllWithItems());
-
         return "userListWithItems";
     }
 
