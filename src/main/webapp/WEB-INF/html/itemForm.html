@@ -15,20 +15,20 @@
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<th:block th:fragment="form">
+<th:block th:fragment="form" xmlns:th="http://www.thymeleaf.org">
     <div class="col-md-4">
 
         <div class="field">
-            <label for="InputName">Name</label>
+            <label for="name">Name</label>
             <input type="text"
                    id="name" placeholder="Name" th:field="*{name}"
-                   th:value="*{name}" />
+                   th:value="*{name}"/>
         </div>
         <div class="field">
-            <label for="InputSurname">Description</label>
+            <label for="description">Description</label>
             <input type="text"
-                 id="surname" placeholder="Surname"
-                 th:field="*{description}" th:value="*{description}" />
+                   id="description" placeholder="Description"
+                   th:field="*{description}" th:value="*{description}"/>
         </div>
 
         <button type="submit" class="ui button" th:type="submit">Submit</button>

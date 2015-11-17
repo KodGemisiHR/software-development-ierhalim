@@ -1,13 +1,15 @@
 <th:block th:fragment="content" xmlns:th="http://www.thymeleaf.org">
     <div class="row">
         <div class="col-md-8 col-md-offset-2 well">
-            <h1>User Update Form</h1>
+            <h1>Item Update Form</h1>
+
+            <p>Updates the item.</p>
 
             <p th:text="${message}"/>
 
-            <form class="ui form" action="#" method="post" th:action="@{/users/__${user.id}__}" th:object="${user}">
+            <form class="ui form" action="#" method="post" th:action="@{/items/__${item.id}__}" th:object="${item}">
                 <input type="hidden" th:field="*{id}" th:value="*{id}">
-                <th:block th:include="userForm :: form"/>
+                <th:block th:include="itemForm :: form" />
             </form>
         </div>
     </div>

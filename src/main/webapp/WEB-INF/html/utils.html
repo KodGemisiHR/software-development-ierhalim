@@ -10,14 +10,15 @@
 
 <th:block th:fragment="menuLinkDropdown (menuName, urls, linkTexts)">
     <div href="#" class="ui simple dropdown item">
-        <th:block th:text="${menuName}">Dropdown</th:block><i class="dropdown icon"></i>
+        <th:block th:text="${menuName}">Dropdown</th:block>
+        <i class="dropdown icon"></i>
 
         <div class="menu" th:with="urlList=${#strings.listSplit(urls,',')}">
             <a class="item"
-                 th:classappend="${#httpServletRequest.getRequestURI() == #httpServletRequest.getContextPath() + url ? 'active':''}"
-                 th:each="text,status : ${#strings.listSplit(linkTexts,',')}"
-                 th:with="url=${urlList[status.index]}"
-                 th:href="@{${url}}" th:text="${text}">
+               th:classappend="${#httpServletRequest.getRequestURI() == #httpServletRequest.getContextPath() + url ? 'active':''}"
+               th:each="text,status : ${#strings.listSplit(linkTexts,',')}"
+               th:with="url=${urlList[status.index]}"
+               th:href="@{${url}}" th:text="${text}">
                 Link name
             </a>
         </div>

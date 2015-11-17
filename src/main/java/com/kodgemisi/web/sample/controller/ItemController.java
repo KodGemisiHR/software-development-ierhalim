@@ -28,42 +28,42 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/items")
 public class ItemController {
 
-	@Autowired
-	private ItemService itemService;
+    @Autowired
+    private ItemService itemService;
 
-	@RequestMapping()
-	public String list(Model model) {
-		model.addAttribute("items", this.itemService.getAll());
-		return "itemList";
-	}
+    @RequestMapping()
+    public String list(Model model) {
+        model.addAttribute("items", this.itemService.getAll());
+        return "itemList";
+    }
 
-	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public String form(@ModelAttribute Item item) {
-		return "itemCreateForm";
-	}
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
+    public String form(@ModelAttribute Item item) {
+        return "itemCreateForm";
+    }
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public String updateForm(Model model, @PathVariable("id") Long id,
-			@RequestParam(value = "message", required = false) String message) {
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public String updateForm(Model model, @PathVariable("id") Long id,
+                             @RequestParam(value = "message", required = false) String message) {
 
-		model.addAttribute("item", this.itemService.getById(id));
-		model.addAttribute("message", message);
-		return "itemUpdateForm";
-	}
+        model.addAttribute("item", this.itemService.getById(id));
+        model.addAttribute("message", message);
+        return "itemUpdateForm";
+    }
 
-	@RequestMapping(method = RequestMethod.POST)
-	public String create(@ModelAttribute Item item) {
-		this.itemService.createAndAttachToUser(item);
-		return "redirect:/items";
-	}
+    @RequestMapping(method = RequestMethod.POST)
+    public String create(@ModelAttribute Item item) {
+        this.itemService.createAndAttachToUser(item);
+        return "redirect:/items";
+    }
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
-	public String update(@ModelAttribute Item item,
-			@PathVariable("id") Long id, Model model) {
+    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+    public String update(@ModelAttribute Item item,
+                         @PathVariable("id") Long id, Model model) {
 
-		this.itemService.update(item);
-		model.addAttribute("message", "Successful");
-		return "redirect:/items/update/" + id;
-	}
+        this.itemService.update(item);
+        model.addAttribute("message", "Successful");
+        return "redirect:/items/" + id;
+    }
 
 }

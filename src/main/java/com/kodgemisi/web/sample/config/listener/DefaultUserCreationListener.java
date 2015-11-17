@@ -17,15 +17,15 @@
 
 package com.kodgemisi.web.sample.config.listener;
 
+import com.kodgemisi.web.sample.model.Item;
+import com.kodgemisi.web.sample.model.User;
+import com.kodgemisi.web.sample.service.ItemService;
+import com.kodgemisi.web.sample.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
-import com.kodgemisi.web.sample.model.Item;
-import com.kodgemisi.web.sample.model.User;
-import com.kodgemisi.web.sample.service.ItemService;
-import com.kodgemisi.web.sample.service.UserService;
 
 /**
  * Created by destan on 19.10.2015.
@@ -41,10 +41,10 @@ public class DefaultUserCreationListener implements ApplicationListener {
 
     @Override
     public void onApplicationEvent(ApplicationEvent event) {
-        if(event instanceof ContextRefreshedEvent) {
+        if (event instanceof ContextRefreshedEvent) {
 
             // FIXME check by username/email
-            if(userService.getById(4L) != null) {
+            if (userService.getById(4L) != null) {
                 // default user is already created
                 return;
             }
@@ -53,21 +53,27 @@ public class DefaultUserCreationListener implements ApplicationListener {
             Item item2 = new Item("Test 2", "lorem ipsum");
             Item item3 = new Item("Test 3", "lorem ipsum");
 
-            itemService.create(item1);
-            itemService.create(item2);
-            itemService.create(item3);
 
             User defaultUser = new User();
             defaultUser.setName("Default");
             defaultUser.setSurname("User");
 
-            defaultUser.getItems().add(item1);
-            defaultUser.getItems().add(item2);
-            defaultUser.getItems().add(item3);
+//            defaultUser.getItems().add(item1)..;
+//            defaultUser.getItems().add(item2);
+//            defaultUser.getItems().add(item3);
+
+            item1.setOwner(defaultUser);
+            item2.setOwner(defaultUser);
+            item3.setOwner(defaultUser);
 
             defaultUser.setEmail("user@kodgemisi.com");
             defaultUser.setPassword("123qwe123");
             userService.create(defaultUser);
+
+            itemService.create(item1);
+            itemService.create(item2);
+            itemService.create(item3);
+
         }
     }
 }

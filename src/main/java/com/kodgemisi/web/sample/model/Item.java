@@ -18,12 +18,16 @@
 package com.kodgemisi.web.sample.model;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Item extends AbstractBaseModel {
 
     private String name;
     private String description;
+
+    @ManyToOne
+    private User owner;
 
     public Item() {
     }
@@ -47,5 +51,13 @@ public class Item extends AbstractBaseModel {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 }

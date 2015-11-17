@@ -18,12 +18,12 @@
 package com.kodgemisi.web.sample.service;
 
 import com.kodgemisi.web.sample.model.Item;
+import com.kodgemisi.web.sample.model.User;
 import com.kodgemisi.web.sample.repository.ItemDao;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import com.kodgemisi.web.sample.model.User;
 
 import javax.transaction.Transactional;
 
@@ -31,26 +31,27 @@ import javax.transaction.Transactional;
 @Transactional
 public class ItemService extends GenericService<Item> {
 
-	@Autowired
-	private ItemDao itemDao;
+    @Autowired
+    private ItemDao itemDao;
 
     @Autowired
     protected SessionFactory sessionFactory;
 
-	public Long createAndAttachToUser(Item item) {
+    public Long createAndAttachToUser(Item item) {
 
         Long retval = super.create(item);
 
-		// Get the current user and add the item among its items
+        // Get the current user and add the item among its items
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        // User instance is detached from session when grabbed via SecurityContextHolder
-        // So we need to bind the user instance to session again to make lazy loading of
+        // User instance is detached from db session when grabbed via SecurityContextHolder
+        // So we need to bind the user instance to db session again to make lazy loading of
         // `items` to work
         sessionFactory.getCurrentSession().refresh(user);
 
         user.getItems().add(item);
+        item.setOwner(user);
 
-		return retval;
-	}
+        return retval;
+    }
 }

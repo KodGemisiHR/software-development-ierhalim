@@ -15,48 +15,48 @@ import java.util.*;
 @Table(name = "APP_USER")
 public class User extends AbstractBaseModel implements UserDetails {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private String name;
+    private String name;
 
-	private String surname;
+    private String surname;
 
-	@NotEmpty
-	@Column(unique = true)
-	private String email;
+    @NotEmpty
+    @Column(unique = true)
+    private String email;
 
-	@Column(nullable = false)
-	private String password;
+    @Column(nullable = false)
+    private String password;
 
-	@Column(unique = true)
-	private String phone;
+    @Column(unique = true)
+    private String phone;
 
-	@OneToMany
-	private Set<Item> items = new HashSet<>();
+    @OneToMany(mappedBy = "owner")
+    private Set<Item> items = new HashSet<>();
 
-	public String getName() {
-		return this.name;
-	}
+    public String getName() {
+        return this.name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getSurname() {
-		return this.surname;
-	}
+    public String getSurname() {
+        return this.surname;
+    }
 
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
 
-	public String getEmail() {
-		return this.email;
-	}
+    public String getEmail() {
+        return this.email;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public Set<Item> getItems() {
         return items;
@@ -67,53 +67,53 @@ public class User extends AbstractBaseModel implements UserDetails {
     }
 
     @Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority("USER");
-		List<SimpleGrantedAuthority> list = new ArrayList<SimpleGrantedAuthority>();
-		list.add(simpleGrantedAuthority);
-		return list;
-	}
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority("USER");
+        List<SimpleGrantedAuthority> list = new ArrayList<SimpleGrantedAuthority>();
+        list.add(simpleGrantedAuthority);
+        return list;
+    }
 
-	@Override
-	public String getPassword() {
-		return this.password;
-	}
+    @Override
+    public String getPassword() {
+        return this.password;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public String getPhone() {
-		return this.phone;
-	}
+    public String getPhone() {
+        return this.phone;
+    }
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
-	@Override
-	public String getUsername() {
-		return this.email;
-	}
+    @Override
+    public String getUsername() {
+        return this.email;
+    }
 
-	@Override
-	public boolean isAccountNonExpired() {
-		return true;
-	}
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
 
-	@Override
-	public boolean isAccountNonLocked() {
-		return true;
-	}
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
 
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return true;
-	}
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
 
-	@Override
-	public boolean isEnabled() {
-		return true;
-	}
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 
 }

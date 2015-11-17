@@ -24,44 +24,44 @@ public class RootConfig {
     @Autowired
     private Environment environment;
 
-	@Bean(name = "dataSource")
-	public DataSource getDataSource() {
-		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName(environment.getProperty("db.driverClass"));
-		dataSource.setUrl(environment.getProperty("db.url"));
-		dataSource.setUsername(environment.getProperty("db.username"));
-		dataSource.setPassword(environment.getProperty("db.password"));
-		return dataSource;
-	}
+    @Bean(name = "dataSource")
+    public DataSource getDataSource() {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName(environment.getProperty("db.driverClass"));
+        dataSource.setUrl(environment.getProperty("db.url"));
+        dataSource.setUsername(environment.getProperty("db.username"));
+        dataSource.setPassword(environment.getProperty("db.password"));
+        return dataSource;
+    }
 
-	@Autowired
-	@Bean(name = "transactionManager")
-	public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory) {
-		HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory);
+    @Autowired
+    @Bean(name = "transactionManager")
+    public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory) {
+        HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory);
 
-		return transactionManager;
-	}
+        return transactionManager;
+    }
 
-	@Autowired
-	@Bean(name = "sessionFactory")
-	public SessionFactory getSessionFactory(DataSource dataSource) {
+    @Autowired
+    @Bean(name = "sessionFactory")
+    public SessionFactory getSessionFactory(DataSource dataSource) {
 
-		LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
+        LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
 
-		sessionBuilder.scanPackages("com.kodgemisi.web.sample.model");
-		sessionBuilder.addProperties(this.getHibernateProperties());
+        sessionBuilder.scanPackages("com.kodgemisi.web.sample.model");
+        sessionBuilder.addProperties(this.getHibernateProperties());
 
-		return sessionBuilder.buildSessionFactory();
-	}
+        return sessionBuilder.buildSessionFactory();
+    }
 
-	private Properties getHibernateProperties() {
-		Properties properties = new Properties();
-		properties.put("hibernate.dialect", environment.getProperty("db.hibernate.dialect"));
-		properties.put("hibernate.hbm2ddl.auto", environment.getProperty("db.hibernate.hbm2ddl.auto"));
-		properties.put("hibernate.show_sql", environment.getProperty("db.hibernate.show_sql"));
-		properties.put("hibernate.format_sql", environment.getProperty("db.hibernate.format_sql"));
-		properties.put("hibernate.use_sql_comments", environment.getProperty("db.hibernate.use_sql_comments"));
-		return properties;
-	}
+    private Properties getHibernateProperties() {
+        Properties properties = new Properties();
+        properties.put("hibernate.dialect", environment.getProperty("db.hibernate.dialect"));
+        properties.put("hibernate.hbm2ddl.auto", environment.getProperty("db.hibernate.hbm2ddl.auto"));
+        properties.put("hibernate.show_sql", environment.getProperty("db.hibernate.show_sql"));
+        properties.put("hibernate.format_sql", environment.getProperty("db.hibernate.format_sql"));
+        properties.put("hibernate.use_sql_comments", environment.getProperty("db.hibernate.use_sql_comments"));
+        return properties;
+    }
 
 }

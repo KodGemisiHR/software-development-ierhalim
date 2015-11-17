@@ -24,12 +24,16 @@
             <img class="logo" src="http://semantic-ui.com/examples/assets/images/logo.png">
             Project Name
         </div>
-        <th:block th:include="utils::menuLink ('/', 'Dashboard')" />
-        <th:block th:include="utils::menuLinkDropdown ('User', '/users, /users/create, /users/withItems', 'User list,Create user,User list with items')" th:with="resourceName=${'/users'}" />
-        <th:block th:include="utils::menuLinkDropdown ('Item', '/items, /items/create', 'Item list,Create item')" th:with="resourceName=${'/items'}" />
+        <th:block th:include="utils::menuLink ('/', 'Dashboard')"/>
+        <th:block
+                th:include="utils::menuLinkDropdown ('User', '/users, /users/create, /users/withItems', 'User list,Create user,User list with items')"
+                th:with="resourceName=${'/users'}"/>
+        <th:block th:include="utils::menuLinkDropdown ('Item', '/items, /items/create', 'Item list,Create item')"
+                  th:with="resourceName=${'/items'}"/>
 
         <div class="right menu">
             <a class="item" onclick="javascript:document.getElementById('logoutForm').submit()">Logout</a>
+
             <form id="logoutForm" action="#" method="post" th:action="@{/logout}"></form>
         </div>
     </div>
@@ -42,6 +46,7 @@
         <div class="ui stackable inverted divided grid">
             <div class="three wide column">
                 <h4 class="ui inverted header">Group 1</h4>
+
                 <div class="ui inverted link list">
                     <a href="#" class="item">Link One</a>
                     <a href="#" class="item">Link Two</a>
@@ -51,6 +56,7 @@
             </div>
             <div class="three wide column">
                 <h4 class="ui inverted header">Group 2</h4>
+
                 <div class="ui inverted link list">
                     <a href="#" class="item">Link One</a>
                     <a href="#" class="item">Link Two</a>
@@ -60,6 +66,7 @@
             </div>
             <div class="three wide column">
                 <h4 class="ui inverted header">Group 3</h4>
+
                 <div class="ui inverted link list">
                     <a href="#" class="item">Link One</a>
                     <a href="#" class="item">Link Two</a>
@@ -69,11 +76,13 @@
             </div>
             <div class="seven wide column">
                 <h4 class="ui inverted header">Footer Header</h4>
+
                 <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
             </div>
         </div>
         <div class="ui inverted section divider"></div>
         <img src="http://semantic-ui.com/examples/assets/images/logo.png" class="ui centered mini image">
+
         <div class="ui horizontal inverted small divided link list">
             <a class="item" href="#">Site Map</a>
             <a class="item" href="#">Contact Us</a>

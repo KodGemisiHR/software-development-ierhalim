@@ -1,21 +1,23 @@
 Kod Gemisi Sample Application
 =============================
 
-This application is provided as a base for your assigned work. It has a pre-configured database, security and MVC structure to help get you started quickly.
+This application is provided as a base for your assigned work. It has a pre-configured database, security and MVC structure to help you get started quickly.
 
-http://semantic-ui.com/ is used as UI library.
+* http://semantic-ui.com/ is used for UI library.
+* http://www.thymeleaf.org/ is used for templating.
+* Spring MVC and Hibernate are used for frameworks.
 
 Installation
 ------------
 
-1) **Create a database for the application**
+**1)** Create a database for the application
 
 The application uses `postgresql` database by default. You can use another database if you wish however you need to configure the application accordingly in that case.
 
 Following commands are provided as a hint to create a database and a database user for the application:
 
 ```bash
-# for debian based linux  OS
+# for debian based linux OS
 
 # Create a db user
 ~/<current_directory>$  sudo -u postgres createuser -D -A -P demouser
@@ -29,9 +31,9 @@ could not change directory to "/home/<username>/<current_directory>": Permission
 ~/<current_directory>$
 ```
 
-2) Import the project as a maven project into your IDE
+**2)** Import the project _as a maven project_ into your IDE
 
-3) Copy `application-sample.properties` as `application-dev.properties` and edit its content accordingly. (the file is in the path  `src/resources/application-sample.properties`)
+**3)** Copy `application-sample.properties` as `application-dev.properties` and edit its content accordingly. (the file is in the path  `src/resources/application-sample.properties`)
 
 Otherwise you will encounter following error:
 
@@ -39,9 +41,9 @@ Otherwise you will encounter following error:
 org.springframework.beans.factory.BeanDefinitionStoreException: Failed to parse configuration class [RootConfig]; nested exception is java.io.FileNotFoundException: class path resource [application-dev.properties] cannot be opened because it does not exist
 ```
 
-4) Run the application, it will create the database tables automatically for you thanks to Hibernate.
+**4)** Run the application, it will create the database tables automatically for you thanks to Hibernate.
 
-The path of application when deployed in eclipse: `http://localhost:8080/sample/`
+The path of application when deployed in Eclipse: `http://localhost:8080/sample/` and in Idea: `http://localhost:8080/`
 
 **Default Credentials**
 
@@ -52,11 +54,17 @@ password: `123qwe123`
 Todos
 -----
 
-1) **Create a Toggl Time Report App**
+**1)** When you open `User > User list with items` page, there is an error occurs. Why this error occurs? Please solve it assuming application's performance is critical. Please describe alternative solutions if any and compare them.
+
+**2)** Add `stockNumber` attribute to `Item` entity. Users should be able to add this new attribute to database, update it and see it in Item List page.
+
+**3)** Add `image` attribute to `Item` entity. You are required to add an image upload feature to the existing Item Create page and store the image as you wish. Note that users should be able to see this uploaded image on the Item List page.
+
+**4)** Create a Toggl Time Report App
 
 We're using [toggl](https://toggl.com/) as time tracking app. Toggl gives us some reports about how much time we and our team spend on projects but we need some additional reports. We need to see our performance based on some metrics(1.1) and we need to see the current status of our colleagues(1.2).
 
-1.1) **Performance Tool**
+4.1) **Performance Tool**
 
 * User should register/login to the app. (You don't need to implement this part. App currently have login and register functionality.) What you need to do is make registration publicly available so that _anyone can register as a new user_.
 
@@ -74,7 +82,7 @@ You can see a mock of the performance report below:
 
 ![performance report mock](performance-page.png)
 
-1.2) **Team Status Tool**
+4.2) **Team Status Tool**
 
 * User should invite his teammates
 * Teammate should register himself/herself to the app
@@ -85,9 +93,7 @@ You can see a mock of the team report below:
 
 ![team status tool mock](dashboard.png)
 
-2) When you open `User > User list with items` page from header, there is an error occurs. Why this error occurs? Please solve it assuming application's performance is critical.
-
-3) (bonus) What would be your future enhancements on this app?
+5) (bonus) What would be your future enhancements on this app?
 
 Intellectual Property Rights
 ----------------------------

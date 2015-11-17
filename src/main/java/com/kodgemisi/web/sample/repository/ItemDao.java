@@ -17,8 +17,8 @@
 
 package com.kodgemisi.web.sample.repository;
 
-import org.springframework.stereotype.Repository;
 import com.kodgemisi.web.sample.model.Item;
+import org.springframework.stereotype.Repository;
 
 @Repository
 public class ItemDao extends GenericDao<Item> {

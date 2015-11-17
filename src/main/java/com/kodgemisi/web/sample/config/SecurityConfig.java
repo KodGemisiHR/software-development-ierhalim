@@ -16,50 +16,50 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	private UserDetailsService userDetailsService;
+    @Autowired
+    private UserDetailsService userDetailsService;
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		/* @formatter:off */
-		http.authorizeRequests()
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        /* @formatter:off */
+        http.authorizeRequests()
 
-			// authentication
-			.antMatchers("/resources/**").permitAll()
-			.anyRequest().authenticated()
-			.and()
-				.logout()
+                // authentication
+                .antMatchers("/resources/**").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .logout()
 
-				// setting default path again (/login?logout) just to enable `permitAll`
-				// explicitly. See http://stackoverflow.com/q/20532737/878361
-				.logoutSuccessUrl("/login?logout").permitAll()
-			.and()
-				.formLogin()
-				.loginPage("/login")
-				.permitAll();
+                        // setting default path again (/login?logout) just to enable `permitAll`
+                        // explicitly. See http://stackoverflow.com/q/20532737/878361
+                .logoutSuccessUrl("/login?logout").permitAll()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .permitAll();
 		/* @formatter:on */
-	}
+    }
 
-	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(this.userDetailsService);
-	}
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(this.userDetailsService);
+    }
 
-	@Bean
-	public DaoAuthenticationProvider authProvider() {
-		DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-		authProvider.setUserDetailsService(this.userDetailsService);
-		authProvider.setPasswordEncoder(this.passwordEncoder());
-		return authProvider;
-	}
+    @Bean
+    public DaoAuthenticationProvider authProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(this.userDetailsService);
+        authProvider.setPasswordEncoder(this.passwordEncoder());
+        return authProvider;
+    }
 
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.authenticationProvider(this.authProvider());
-	}
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(this.authProvider());
+    }
 }

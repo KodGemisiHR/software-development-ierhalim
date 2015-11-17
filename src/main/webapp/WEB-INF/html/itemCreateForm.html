@@ -15,13 +15,17 @@
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<th:block th:fragment="content">
+<th:block th:fragment="content" xmlns:th="http://www.thymeleaf.org">
     <div class="row">
         <div class="col-md-8 col-md-offset-2 well">
             <h1>Item Create Form</h1>
+
             <p>Adds the item to current user.</p>
-            <p th:text="${message}" />
-            <form class="ui form" action="#" method="post" th:action="@{/items}" th:object="${item}" th:include="itemForm :: form"></form>
+
+            <p th:text="${message}"/>
+
+            <form class="ui form" action="#" method="post" th:action="@{/items}" th:object="${item}"
+                  th:include="itemForm :: form"></form>
         </div>
     </div>
 </th:block>

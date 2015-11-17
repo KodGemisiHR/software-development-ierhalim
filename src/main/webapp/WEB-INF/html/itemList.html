@@ -15,7 +15,7 @@
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<th:block th:fragment="content">
+<th:block th:fragment="content" xmlns:th="http://www.thymeleaf.org">
 
     <div class="container">
         <div class="text-center">
@@ -43,6 +43,7 @@
                 <td>
                     <div class="ui vertical animated button" tabindex="0">
                         <a th:href="@{/items/__*{id}__}" class="hidden content">Edit</a>
+
                         <div class="visible content">
                             <i class="edit icon"></i>
                         </div>
