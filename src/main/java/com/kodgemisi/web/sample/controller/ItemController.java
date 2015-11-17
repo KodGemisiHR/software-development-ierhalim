@@ -42,7 +42,7 @@ public class ItemController {
         return "itemCreateForm";
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
     public String updateForm(Model model, @PathVariable("id") Long id,
                              @RequestParam(value = "message", required = false) String message) {
 
@@ -63,7 +63,7 @@ public class ItemController {
 
         this.itemService.update(item);
         model.addAttribute("message", "Successful");
-        return "redirect:/items/" + id;
+        return "redirect:/items/" + id + "/edit";
     }
 
 }

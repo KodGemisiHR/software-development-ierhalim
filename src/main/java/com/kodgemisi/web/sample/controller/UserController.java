@@ -35,8 +35,8 @@ public class UserController {
         return "userCreateForm";
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String updateForm(Model model, @PathVariable("id") Long id,
+    @RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
+    public String editForm(Model model, @PathVariable("id") Long id,
                              @RequestParam(value = "message", required = false) String message) {
 
         model.addAttribute("user", this.userService.getById(id));
@@ -65,7 +65,7 @@ public class UserController {
 
         this.userService.update(user);
         model.addAttribute("message", "Successful");
-        return "redirect:/users/" + id;
+        return "redirect:/users/" + id + "/edit";
     }
 
 }
