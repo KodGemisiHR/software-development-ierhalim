@@ -26,9 +26,9 @@
         </div>
         <th:block th:include="utils::menuLink ('/', 'Dashboard')"/>
         <th:block
-                th:include="utils::menuLinkDropdown ('User', '/users, /users/create, /users/withItems', 'User list,Create user,User list with items')"
+                th:include="utils::menuLinkDropdown ('User', '/users,/users/create,/users/withItems', 'User list,Create user,User list with items')"
                 th:with="resourceName=${'/users'}"/>
-        <th:block th:include="utils::menuLinkDropdown ('Item', '/items, /items/create', 'Item list,Create item')"
+        <th:block th:include="utils::menuLinkDropdown ('Item', '/items,/items/create', 'Item list,Create item')"
                   th:with="resourceName=${'/items'}"/>
 
         <div class="right menu">
