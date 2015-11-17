@@ -38,7 +38,8 @@
             <label for="phone">Phone</label>
             <input
                     type="text" id="phone"
-                    name="phone" placeholder="Phone"/>
+                    name="phone" placeholder="Phone"
+                    th:field="*{phone}" th:value="${user.phone}"/>
         </div>
 
         <button type="submit" class="ui button" th:type="submit">Submit</button>

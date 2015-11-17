@@ -65,7 +65,7 @@ public class UserController {
 
         this.userService.update(user);
         model.addAttribute("message", "Successful");
-        return "redirect:/users/update/" + id;
+        return "redirect:/users/" + id;
     }
 
 }
